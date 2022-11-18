@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+<main>
+    <section id="cart_items" th:object="${order}">
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Order detail</li>
+                </ol>
+            </div><!--/breadcrums-->
+
+            <div class="register-req">
+                <h1 class="text-center text-primary">Order Information</h1>
+            </div><!--/register-req-->
+
+            <div class="shopper-informations">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="shopper-info">
+                            <form>
+                                <label>Order Number:</label>
+                                <input readonly type="text" th:value="*{id}">
+                                <label>Phone Number:</label>
+                                <input readonly type="text" th:value="*{phoneNumber}">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="shopper-info">
+                            <form>
+                                <label>Receiver:</label>
+                                <input readonly type="text" th:value="*{fullName}">
+
+                                <label>Create date:</label>
+                                <input readonly type="text" th:value="*{createDate}">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="order-message">
+                            <p><strong>Shipping Order</strong></p>
+                            <textarea style="resize: none"  rows="5">[[*{address}]]</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-payment">
+                <h2>Detail Order</h2>
+            </div>
+
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Item</td>
+                        <td class="description">Info</td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="total">Total</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="item : ${order.orderDetails}" >
+                        <td class="cart_product">
+                            <a href="">
+                                <img th:src="'http://localhost:1997/images/'+ ${item.product.image}" style="height: 100px" alt="#">
+                            </a>
+                        </td>
+                        <td class="cart_description">
+                            <h4><a href="">[[${item.product.name}]]</a></h4>
+                            <p>Description: [[${item.product.description}]]</p>
+                        </td>
+                        <td class="cart_price">
+                            <p>[[${item.price}]]</p>
+                        </td>
+                        <td class="cart_quantity">
+                            <p>[[${item.quantity}]]</p>
+                        </td>
+                        <td class="cart_total">
+                            <p class="cart_total_price">$[[${item.price * item.quantity}]]</p>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section> <!--/#cart_items-->
+</main>
+</body>
+</html>

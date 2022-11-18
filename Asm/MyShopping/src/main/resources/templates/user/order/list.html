@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+<main>
+    <section id="cart_items" >
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Order List</li>
+                </ol>
+            </div><!--/breadcrums-->
+
+            <div class="register-req">
+                <h1 class="text-center text-primary">Order List</h1>
+            </div><!--/register-req-->
+
+            <div class="review-payment">
+                <h2>Detail Order</h2>
+            </div>
+
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed table-bordered text-center">
+                    <thead>
+                    <tr class="cart_menu">
+                        <td>No.</td>
+                        <td>Order No.</td>
+                        <td>Receiver</td>
+                        <td>Order Date</td>
+                        <td class="price">Phone Number</td>
+                        <td class="image">Address</td>
+                        <td class="image">Status</td>
+                        <td class="total">Detail</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="item, status : ${orderList}" >
+                        <td class="cart_price">
+                            [[${status.count}]]
+                        </td>
+                        <td class="cart_price">
+                            [[${item.id}]]
+                        </td>
+                        <td class="cart_price">
+                            <p>[[${item.fullName}]]</p>
+                        </td>
+                        <td class="cart_price">
+                            <p>[[${item.createDate}]]</p>
+                        </td>
+                        <td class="cart_price">
+                            <p>[[${item.phoneNumber}]]</p>
+                        </td>
+                        <td class="cart_quantity">
+                            <p>[[${item.address}]]</p>
+                        </td>
+                        <td class="cart_quantity">
+                            <p th:text="${item.status?'confirmed':'Wait for confirmation'}"></p>
+                        </td>
+                        <td>
+                            <a th:href="'/order/detail/'+${item.id}" class="cart_quantity_delete text-center"><i class="fa fa-search"></i></a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

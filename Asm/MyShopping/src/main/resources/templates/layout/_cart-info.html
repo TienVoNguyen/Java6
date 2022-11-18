@@ -1,0 +1,11 @@
+<h2><i class="fa fa-shopping-cart"></i>&nbsp;Cart</h2>
+<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h4 class="panel-title"><a th:href="@{/cart}">Count item: <strong class="text-danger">{{ getCount }}</strong></a></h4>
+            <h4 class="panel-title"><a th:href="@{/cart}">Total: <strong class="text-danger">${{ getAmount }}</strong></a></h4>
+            <a class="btn btn-primary" th:href="@{/cart}" role="button">View Cart</a>
+        </div>
+    </div>
+
+</div><!--/cart-->

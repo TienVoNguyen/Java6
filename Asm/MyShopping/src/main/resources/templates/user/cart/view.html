@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+<main>
+    <section id="cart_items">
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Shopping Cart</li>
+                </ol>
+            </div>
+            <div th:replace="/layout/_table"></div>
+        </div>
+    </section> <!--/#cart_items-->
+
+    <section id="do_action">
+        <div class="container">
+            <div class="heading">
+                <h3>What would you like to do next?</h3>
+                <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="total_area">
+                        <ul>
+                            <li>Cart Sub Total <span>${{getAmount}}</span></li>
+                            <li>Eco Tax <span>Free</span></li>
+                            <li>Shipping Cost <span>Free</span></li>
+                            <li>Total <span>${{getAmount}}</span></li>
+                        </ul>
+                        <button class="btn btn-default update" @click.prevent="removeAll">RemoveAll</button>
+                        <a class="btn btn-default check_out" th:href="@{/order/checkout}">Check Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/#do_action-->
+</main>
+</body>
+</html>

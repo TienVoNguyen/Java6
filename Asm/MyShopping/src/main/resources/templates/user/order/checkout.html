@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+<main>
+    <section id="cart_items">
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Check out</li>
+                </ol>
+            </div><!--/breadcrums-->
+
+            <div class="register-req">
+                <p>Có làm thì mới có ăn, không làm mà đòi ăn thì chỉ ăn .....<strong>&quot;Huấn Rose&quot;</strong></p>
+            </div><!--/register-req-->
+
+            <div class="shopper-informations">
+                <div class="row">
+                    <div class="col-sm-12 clearfix">
+                        <div class="bill-to">
+
+                            <div class="form-one">
+                                <p>Purchase:</p>
+                                <form>
+                                    <input type="text" th:value="${name}" id="fullName" placeholder="Nguoi nhan">
+                                </form>
+                            </div>
+                            <div class="form-two">
+                                <p>Order date:</p>
+                                <form>
+                                    <input readonly :value="new Date() | dateFormat" type="text" placeholder="Create Date">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 clearfix">
+                        <div class="order-message">
+                            <p>Phone number:</p>
+                            <input style=" background: #F0F0E9; border: 0 none; margin-bottom: 10px;
+                                        padding: 10px; width: 100%; font-weight: 300;"
+                                   type="text" v-model="phoneNumber" placeholder="Phone number">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 clearfix">
+                        <div class="order-message">
+                            <p>Shipping Order</p>
+                            <textarea name="address" v-model="address"  placeholder="Notes about your order, Special Notes for Delivery" rows="16"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-payment">
+                <h2>Review & Payment</h2>
+            </div>
+            <div th:replace="/layout/_table"></div>
+            <div class="payment-options">
+                <span>
+						<button class="btn btn-primary pull-right" @click="purchase">Purchase</button>
+                </span>
+            </div>
+
+        </div>
+    </section> <!--/#cart_items-->
+</main>
+</body>
+</html>
